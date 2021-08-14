@@ -13,12 +13,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.deepOrangeAccent,
+        backgroundColor: Colors.purple[800],
         appBar: AppBar(
           title: Center(
-            child: Text('Dicee'),
+            child: Text('Dicee App'),
           ),
-          backgroundColor: Colors.deepOrange,
+          backgroundColor: Colors.purple[900],
         ),
         body: DicePage(),
       ),
@@ -26,30 +26,44 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 1;
+  int rightDiceNumber = 2;
+
+  void changeDiceeApp() {
+    setState(
+      () {
+        leftDiceNumber = Random().nextInt(6) + 1;
+        rightDiceNumber = Random().nextInt(6) + 1;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    var leftDiceNumber = Random();
-
     return Center(
       child: Row(
         children: [
           Expanded(
-            flex: 1,
             child: FlatButton(
               onPressed: () {
-                print('CUUUU');
+                changeDiceeApp();
               },
               child: Image.asset('images/dice$leftDiceNumber.png'),
             ),
           ),
           Expanded(
-            flex: 1,
             child: FlatButton(
-                onPressed: () {
-                  print('CUUUU2');
-                },
-                child: Image.asset('images/dice2.png')),
+              onPressed: () {
+                changeDiceeApp();
+              },
+              child: Image.asset('images/dice$rightDiceNumber.png'),
+            ),
           ),
         ],
       ),
