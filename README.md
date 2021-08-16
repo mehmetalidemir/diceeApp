@@ -1,4 +1,4 @@
-Flutter Dicee App
+# Flutter Dicee App
 
 When clicked, the image rolls a random dice.
 
